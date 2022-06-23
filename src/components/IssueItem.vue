@@ -117,7 +117,8 @@ const priorityColors = {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: rgba(74, 42, 73, 0.34);
+      font-size: 16px;
+      background-color: #400000;
       border-radius: 12px;
     }
   }

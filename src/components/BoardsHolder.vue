@@ -48,6 +48,7 @@ export default defineComponent({
 
 <style lang="scss">
 .boards-holder__container {
+  height: 100%;
   display: flex;
   flex-direction: column;
   margin: 0 5px;
