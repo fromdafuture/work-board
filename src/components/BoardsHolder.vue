@@ -18,6 +18,13 @@
         :issues="allIssues"
         :priorities="priority"
       />
+      <DropZone
+        class="boards-holder__delete-zone"
+        dragClass="boards-holder__delete-zone-on-drag"
+        @objectDropped="onObjectDropped($event)"
+      >
+        <q-icon name="delete" size="24px" />
+      </DropZone>
     </div>
   </DragContainer>
 </template>
@@ -26,21 +33,26 @@
 import SingleBoard from "./SingleBoard.vue";
 import IssueStatuses from "../models/IssueStatuses";
 import DragContainer from "../contexts/DragContainer.vue";
+import DropZone from "../components/DropZone.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "BoardsHolder",
-  components: { DragContainer, SingleBoard },
+  components: { DragContainer, SingleBoard, DropZone },
   data() {
     return {
       IssueStatuses,
     };
   },
   props: ["allIssues"],
-
   computed: {
     Priorities() {
       return this.$store.state.issues.priorities;
+    },
+  },
+  methods: {
+    onObjectDropped(e) {
+      this.$store.commit("issues/removeIssue", e);
     },
   },
 });
@@ -74,5 +86,31 @@ export default defineComponent({
   overflow: hidden;
   line-height: 16px;
   background-color: #ebebeb;
+}
+
+.boards-holder__delete-zone {
+  position: absolute;
+  z-index: 9999;
+  height: 44px;
+  width: 44px;
+  right: 20px;
+  top: 20px;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 22px;
+  background-color: rgb(255, 189, 189);
+
+  &-on-drag {
+    display: flex;
+  }
+
+  &:after {
+    background-color: rgb(255, 189, 189, 0.2);
+    border: 1px solid rgb(255, 127, 127, 0.2);
+
+
 }
 </style>

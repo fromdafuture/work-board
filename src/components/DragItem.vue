@@ -52,10 +52,7 @@ export default defineComponent({
       document.body.onmouseup = mouseUp.bind(this);
       document.body.style.overflow = "hidden";
     },
-    onMouseMove(e) {
-      // this.movingCopy.style.left = e.x;
-      // this.movingCopy.style.top = e.y;
-    },
+    onMouseMove(e) {},
     onMouseUp(e) {},
   },
 });
@@ -75,5 +72,6 @@ function mouseUp(e) {
   }
   document.dragInfo.draggedEl = null;
   this.setCurrentDragItem("");
+  this.setCurrentDragObject(null);
 }
 </script>

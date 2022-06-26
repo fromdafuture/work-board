@@ -7,6 +7,10 @@ export function changeIssue(state, { oldIssue, newIssue }) {
   state.issues = [...issues, newIssue];
 }
 
+export function removeIssue(state, issueToRemove) {
+  state.issues = state.issues.filter((t) => t.date != issueToRemove.date);
+}
+
 export function setLayout(state, latyout) {
   state.priorities = latyout;
 }
