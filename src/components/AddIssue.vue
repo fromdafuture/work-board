@@ -26,9 +26,21 @@
 
       <div class="add-issue__texts">
         <span>Title</span>
-        <q-input name="title" outlined dense label="" v-model="issueTitle" />
+        <q-input
+          name="title"
+          outlined
+          dense
+          placeholder="Place some title here"
+          v-model="issueTitle"
+        />
         <span>Text</span>
-        <q-input name="text" outlined dense label="" v-model="issueText" />
+        <q-input
+          name="text"
+          outlined
+          dense
+          placeholder="Place some text here"
+          v-model="issueText"
+        />
       </div>
     </div>
     <q-btn type="submit" class="add-issue__button">Submit</q-btn>
@@ -36,10 +48,9 @@
 </template>
 
 <script>
-import { defineComponent } from "@vue/runtime-core";
 import IssueStatuses from "src/models/IssueStatuses";
 
-export default defineComponent({
+export default {
   name: "AssIssue",
   data() {
     return {
@@ -74,9 +85,11 @@ export default defineComponent({
         text,
         date: Date.now(),
       });
+      this.issueTitle = "";
+      this.issueText = "";
     },
   },
-});
+};
 </script>
 
 <style lang="scss">

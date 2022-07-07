@@ -42,8 +42,8 @@
 
 <script>
 import IssueItem from "./IssueItem.vue";
-import IssueStatuses from "../models/IssueStatuses";
-import DropZone from "../components/DropZone.vue";
+import IssueStatuses from "src/models/IssueStatuses";
+import DropZone from "src/dragndrop/DropZone.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({

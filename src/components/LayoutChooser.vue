@@ -6,7 +6,8 @@
         v-for="layout in layouts"
         :key="layout.type"
         class="layout"
-        @click="onClick(layout.layout)"
+        :class="{ 'layout-selected': layoutSelected == layout.type }"
+        @click="onClick(layout)"
       >
         <div class="layout__title">{{ layout.type }}:</div>
         <div
@@ -18,6 +19,7 @@
             v-for="priority in layoutPriorities"
             :key="priority"
             class="layout__priority"
+            style="overflow: hidden"
           >
             {{ priority }}
           </div>
@@ -28,21 +30,20 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-
-export default defineComponent({
+export default {
   name: "LayoutChooser",
   data() {
     return {
+      layoutSelected: "Separated",
       layouts: {
-        1: {
+        separated: {
           type: "Separated",
           layout: [
             ["highest", "high"],
             ["medium", "low", "lowest"],
           ],
         },
-        2: {
+        single: {
           type: "Single",
           layout: [["highest"], ["high"], ["medium"], ["low"], ["lowest"]],
         },
@@ -51,10 +52,11 @@ export default defineComponent({
   },
   methods: {
     onClick(layout) {
-      this.$store.commit("issues/setLayout", layout);
+      this.layoutSelected = layout.type;
+      this.$store.commit("issues/setLayout", layout.layout);
     },
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
@@ -77,7 +79,7 @@ export default defineComponent({
   padding: 6px;
 
   &:hover {
-    background-color: aliceblue;
+    background-color: rgba(147, 161, 174, 0.459);
     cursor: pointer;
   }
 
@@ -94,5 +96,9 @@ export default defineComponent({
   &__priority {
     margin-left: 6px;
   }
+}
+
+.layout-selected {
+  background-color: aliceblue;
 }
 </style>

@@ -23,7 +23,9 @@
         dragClass="boards-holder__delete-zone-on-drag"
         @objectDropped="onObjectDropped($event)"
       >
-        <q-icon name="delete" size="24px" />
+        <div class="boards-holder__delete-zone-sign">
+          <q-icon name="delete" size="34px" />
+        </div>
       </DropZone>
     </div>
   </DragContainer>
@@ -32,11 +34,10 @@
 <script>
 import SingleBoard from "./SingleBoard.vue";
 import IssueStatuses from "../models/IssueStatuses";
-import DragContainer from "../contexts/DragContainer.vue";
-import DropZone from "../components/DropZone.vue";
-import { defineComponent } from "vue";
+import DragContainer from "../dragndrop/DragContainer.vue";
+import DropZone from "../dragndrop/DropZone.vue";
 
-export default defineComponent({
+export default {
   name: "BoardsHolder",
   components: { DragContainer, SingleBoard, DropZone },
   data() {
@@ -55,7 +56,7 @@ export default defineComponent({
       this.$store.commit("issues/removeIssue", e);
     },
   },
-});
+};
 </script>
 
 <style lang="scss">
@@ -105,12 +106,48 @@ export default defineComponent({
 
   &-on-drag {
     display: flex;
+
+    .boards-holder__delete-zone-sign {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      animation: 1s trash-anim;
+      width: 100%;
+      height: 100%;
+
+      @keyframes trash-anim {
+        from {
+          transform: scale(0.1);
+        }
+
+        40% {
+          transform: scale(1);
+          transform: rotateZ(0);
+        }
+
+        60% {
+          transform: rotateZ(-15deg);
+        }
+        70% {
+          transform: rotateZ(+15deg);
+        }
+        80% {
+          transform: rotateZ(-15deg);
+        }
+        90% {
+          transform: rotateZ(+15deg);
+        }
+        to {
+          transform: rotateZ(0);
+        }
+      }
+    }
   }
 
   &:after {
     background-color: rgb(255, 189, 189, 0.2);
     border: 1px solid rgb(255, 127, 127, 0.2);
-
-
+  }
 }
 </style>

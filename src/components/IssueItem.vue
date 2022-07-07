@@ -2,7 +2,6 @@
   <DragItem :itemType="issue.status + issue.priority" :itemObject="issue">
     <div class="issue">
       <div class="issue-signs">
-        <div class="issue-signs__type">O</div>
         <div class="issue-signs__priority">
           <q-icon :name="priorityMark" :color="priorityColor" class="icon" />
         </div>
@@ -24,10 +23,9 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import DragItem from "./DragItem.vue";
+import DragItem from "src/dragndrop/DragItem.vue";
 
-export default defineComponent({
+export default {
   name: "IssueItem",
   components: { DragItem },
   props: ["issue"],
@@ -46,7 +44,7 @@ export default defineComponent({
   },
   mounted() {},
   methods: {},
-});
+};
 
 const getPriorityMark = (priority) => priorityImages[priority] || "up";
 const getPriorityColor = (priority) => priorityColors[priority] || "gray";
@@ -75,6 +73,7 @@ const priorityColors = {
   background-color: antiquewhite;
 
   position: relative;
+  border-radius: 10px;
 
   &:after {
     content: "";
@@ -85,6 +84,7 @@ const priorityColors = {
     right: 0;
     left: 0;
     cursor: move;
+    border: inherit;
   }
 
   &:hover:after {
@@ -101,6 +101,8 @@ const priorityColors = {
     flex-direction: column;
     overflow: hidden;
     background-color: rgba(255, 0, 0, 0.298);
+    border-bottom-left-radius: inherit;
+    border-top-left-radius: inherit;
 
     &__type {
       width: 20px;
@@ -134,8 +136,14 @@ const priorityColors = {
 
     &__title {
       font-size: 16px;
+      line-height: 16px;
+      margin-top: 8px;
       overflow: hidden;
       text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
 
     &__text {
@@ -146,6 +154,8 @@ const priorityColors = {
       line-clamp: 3;
       -webkit-box-orient: vertical;
       line-height: 14px;
+      margin-top: 8px;
+      color: #6d6d6d;
     }
 
     &__epic {
@@ -162,6 +172,7 @@ const priorityColors = {
     overflow: hidden;
     justify-content: space-between;
     align-items: center;
+    border-radius: inherit;
 
     &__avatar {
       width: 24px;
