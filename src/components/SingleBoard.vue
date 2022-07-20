@@ -150,10 +150,11 @@ export default defineComponent({
 }
 
 .sboard-issues__column {
-  background-color: rgba(128, 128, 128, 0.098);
+  background-color: rgba(128, 128, 128, 0.07);
 }
 .sboard-issues__issue {
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  padding: 0 3px;
 }
 
 .sboard-issues {

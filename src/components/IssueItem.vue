@@ -70,10 +70,10 @@ const priorityColors = {
 .issue {
   width: 100%;
   display: flex;
-  background-color: antiquewhite;
-
+  background-color: #f9c785;
   position: relative;
-  border-radius: 10px;
+  border-top-left-radius: 12px;
+  box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.25);
 
   &:after {
     content: "";
@@ -119,8 +119,9 @@ const priorityColors = {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 16px;
-      background-color: #400000;
+      font-size: 20px;
+      background-color: #000000;
+      margin: 2px;
       border-radius: 12px;
     }
   }

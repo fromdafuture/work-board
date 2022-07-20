@@ -94,8 +94,8 @@ export default {
   z-index: 9999;
   height: 44px;
   width: 44px;
-  right: 20px;
-  top: 20px;
+  right: 34px;
+  top: 34px;
 
   display: none;
   justify-content: center;
